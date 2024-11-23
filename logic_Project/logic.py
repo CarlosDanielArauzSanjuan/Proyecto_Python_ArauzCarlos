@@ -38,8 +38,9 @@ def generate_reports():
     data = read_data ("database.json")
     totals = calculate_total()
     report = {
-        "total_bill": add(["amount"])
-        
+        "total_bill": add([spent["amount"] for ------ in data]),
+        "totals_each_category": totals
 
     }
+    return report
 
