@@ -13,7 +13,7 @@ def write_data(data, path):
         json.dumps(data, file, indent=4)
 
 def register_bills (amount, category, description, date):
-    data= read_data("database.json")
+    data = read_data("database.json")
     new_data = { 
 
         "amount": amount,
@@ -31,7 +31,15 @@ def call_bills():
 
 def calculate_total():
     data = read_data("database.json")
-    return calculate_totals_each_category,() 
+    return calculate_totals_each_category(data, "category", "amount")
+ 
 
+def generate_reports():
+    data = read_data ("database.json")
+    totals = calculate_total()
+    report = {
+        "total_bill": add(["amount"])
+        
 
+    }
 
