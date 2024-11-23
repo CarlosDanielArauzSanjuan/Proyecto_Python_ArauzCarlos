@@ -16,14 +16,22 @@ def register_bills (amount, category, description, date):
     data= read_data("database.json")
     new_data = { 
 
-        "amount":
-        "category":
-        "description":
-        "date":
-
-
-
+        "amount": amount,
+        "category":category,
+        "description":description,
+        "date":date
 
     }
+
+    data.append(new_data)
+    write_data( data, "database.json")
+
+def call_bills():
+    return read_data("database.json")
+
+def calculate_total():
+    data = read_data("database.json")
+    return calculate_totals_each_category,() 
+
 
 
