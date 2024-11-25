@@ -33,14 +33,19 @@ def call_bills():
 
 def calculate_total():
     data = read_data("database.json")
+    if not data:
+        return{}
+    
     return calculate_totals_each_category(data, "category", "amount")
  
 
 def generate_reports():
     data = read_data ("database.json")
+    if not data:
+        return  {"total_bills": 0, "totals_each_category": totals,}
     totals = calculate_total()
     report = {
-        "total_bill": add([spent["amount"] for spent in data]),
+        "total_bill": add( [spent["amount"] for spent in data if "amount" in spent]),
         "totals_each_category": totals
 
     }
