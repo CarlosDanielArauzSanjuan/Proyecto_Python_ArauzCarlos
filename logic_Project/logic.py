@@ -1,20 +1,22 @@
 import json
 
-from formulas.operations import add, filter_by_range, calculate_totals_each_category
+from formulas.range_filter import add, filter_by_range, calculate_totals_each_category
 
 
 def read_data(path):
-    with open (f"databases/{path}", "r") as file:
-        return json.load(file)
-    
-
-def write_data(data, path):
+    try:
+        with open (f"databases/{path}", "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return[]
+        
+def write_data(dat, path):
     with open(f"databases/{path}", "wd+") as file:
-        json.dumps(data, file, indent=4)
+        json.dumps(dat, file, indent=4)
 
 def register_bills (amount, category, description, date):
     data = read_data("database.json")
-    new_data = { 
+    new_spent = { 
 
         "amount": amount,
         "category":category,
@@ -23,7 +25,7 @@ def register_bills (amount, category, description, date):
 
     }
 
-    data.append(new_data)
+    data.append(new_spent)
     write_data( data, "database.json")
 
 def call_bills():
@@ -38,7 +40,7 @@ def generate_reports():
     data = read_data ("database.json")
     totals = calculate_total()
     report = {
-        "total_bill": add([spent["amount"] for ------ in data]),
+        "total_bill": add([spent["amount"] for spent in data]),
         "totals_each_category": totals
 
     }
