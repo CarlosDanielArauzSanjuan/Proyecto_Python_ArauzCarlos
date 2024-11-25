@@ -1,8 +1,10 @@
-def calculate_totals_each_category(data, key_category, key_amount): #definir bien los parametros 
 
-    totals = {}
-    for item in data:
-        category = item[key_category]
-        amount = item[key_amount]
-        totals[category] = totals.get(category, 0) + amount 
-    return totals
+#function to calculate the totals of each category
+def calculate_totals_each_category(data, key_category, key_amount): 
+
+    totals = {} #dictionary to save every total plus of each category 
+    for item in data: #cycle to iterate for each element of the list
+        category = item[key_category] #get the category of the element
+        amount = item[key_amount]#get the amount of the element
+        totals[category] = totals.get(category, 0) + amount  #add the amount with the corresponding category 
+    return totals #return the dictionary with every total
